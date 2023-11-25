@@ -6,68 +6,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tes</title>
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
     <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+
 </head>
 
 <body>
-    <a-scene>
+    <a-scene physics="debug: false">
         <a-assets>
-            <a-mixin id="interactable" hoverable grabbable></a-mixin>
+            <a-asset-item id="fan" src="./assets/fan/scene.gltf"></a-asset-item>
+            <a-asset-item id="hdd" src="./assets/hdd/scene.gltf"></a-asset-item>
+            <a-asset-item id="ram" src="./assets/ram/scene.gltf"></a-asset-item>
+            <a-mixin id="controller" physics-collider static-body="shape: sphere; sphereRadius: 0.02" super-hands="colliderEvent: collisions;
+                             colliderEventProperty: els;
+                             colliderEndEvent: collisions;
+                             colliderEndEventProperty: clearedEls" collision-filter="group: hands;
+                                    collidesWith: blue;
+                                    collisionForces: false">
+            </a-mixin>
+            <a-mixin id="object" dynamic-body grabbable>
+            </a-mixin>
         </a-assets>
-
-        <a-entity id="box" mixin="interactable" geometry="primitive: box; width: 2; height: 2; depth: 2"
-            material="color: #4CC3D9" position="0 1.5 -2">
+        <a-entity oculus-touch-controls="hand: left" model: true mixin="controller">
         </a-entity>
+        <a-entity oculus-touch-controls="hand: right" model: true mixin="controller">
+        </a-entity>
+        <a-camera position="0 0.5 1"></a-camera>
+        <a-entity id="infoText" text="value: Pijakan kontrol untuk melihat deskripsi" position="0 1.5 -1"></a-entity>
 
-        <a-entity id="infoText" text="value: Aku adalah kotak dan berkotak dan" position="0 1.5 -7" visible="false"></a-entity>
+        <a-entity mixin="object"
+        gltf-model="#fan"  
+        scale="0.2 0.2 0.2"
+        position="0.2 1 -0.5"
+        collision-filter="group: blue; collidesWith:default, red, hands"
+        event-set__down="_event: mousedown; _target: #infoText; visible: true; value: Fan: Alat yang digunakan untuk menghasilkan udara segar."
+               event-set__up="_event: mouseup; _target: #infoText; visible: false"
+               event-set__leave="_event: mouseleave; _target: #infoText; visible: false"
+        ></a-entity>
+        <a-entity id="infoText" text="value: Fan: Alat yang digunakan untuk menghasilkan udara segar." position="0 1.5 -1" visible="false"></a-entity>
+        <a-entity mixin="object"
+        gltf-model="#hdd"  
+        scale="0.3 0.3 0.3"
+        position="0.5 1 -0.5"
+        collision-filter="group: blue; collidesWith:default, red, hands"
+        ></a-entity>
+        <a-entity mixin="object"
+        gltf-model="#ram"  
+        scale="0.05 0.05 0.05"
+        position="-0.2 1 -0.5"
+        collision-filter="group: blue; collidesWith:default, red, hands"
+        ></a-entity>
+        <a-box static-body position="0.5 0.2 -0.5" material="color: brown"
+                width="2" height="0.5" depth="0.5"
+                collision-filter="collidesWith: blue, default, red, hands">
+        </a-box>
+        <a-plane material="color: gray;" width="25" height="25" rotation="-90 0 0" position="0 0 0" static-body
+            collision-filter="collidesWith: blue" physics-collider></a-plane>
+            <a-plane material="color: gray;" width="25" height="25" rotation="0 0 0" position="0 0 -10" static-body
+            collision-filter="collidesWith: blue" physics-collider></a-plane>
 
-        <a-camera position="0 1.6 0">
-            <a-cursor raycaster="objects: .hoverable"></a-cursor>
-        </a-camera>
+        
     </a-scene>
-
-    <script>
-        AFRAME.registerComponent('hover-show', {
-            schema: {
-                target: { type: 'selector' }
-            },
-            init: function () {
-                var el = this.el;
-                var target = this.data.target;
-
-                el.addEventListener('mouseenter', function () {
-                    target.setAttribute('visible', true);
-                });
-
-                el.addEventListener('mouseleave', function () {
-                    target.setAttribute('visible', false);
-                });
-            }
-        });
-    </script>
-
-    <script>
-        AFRAME.registerComponent('click-show', {
-            schema: {
-                target: { type: 'selector' }
-            },
-            init: function () {
-                var el = this.el;
-                var target = this.data.target;
-
-                el.addEventListener('click', function () {
-                    target.setAttribute('visible', true);
-                });
-            }
-        });
-    </script>
-
-    <a-entity id="box" mixin="interactable hover-show" geometry="primitive: box; width: 2; height: 2; depth: 2"
-        material="color: #4CC3D9" position="0 1.5 -5"></a-entity>
-
-    <a-entity id="infoText" text="value: Aku adalah kotak dan berkotak" position="0 1.5 -7" visible="false"
-        click-show__target="#infoText"></a-entity>
-
 </body>
 
 </html>
