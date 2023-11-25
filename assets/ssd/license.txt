@@ -1,0 +1,11 @@
+Model Information:
+* title:	Samsung SSD 2.5in - Dirty
+* source:	https://sketchfab.com/3d-models/samsung-ssd-25in-dirty-dcc1150ede274cccb7f2ddc0f2345dcb
+* author:	jcbinet (https://sketchfab.com/jcbinet)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Samsung SSD 2.5in - Dirty" (https://sketchfab.com/3d-models/samsung-ssd-25in-dirty-dcc1150ede274cccb7f2ddc0f2345dcb) by jcbinet (https://sketchfab.com/jcbinet) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

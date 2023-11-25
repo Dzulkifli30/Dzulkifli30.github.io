@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tes</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+
+</head>
+
+<body>
+    <a-scene physics="debug: false">
+        <a-assets>
+            <a-asset-item id="fan" src="./assets/fan/scene.gltf"></a-asset-item>
+            <a-asset-item id="hdd" src="./assets/hdd/scene.gltf"></a-asset-item>
+            <a-asset-item id="ram" src="./assets/ram/scene.gltf"></a-asset-item>
+            <a-mixin id="controller" physics-collider static-body="shape: sphere; sphereRadius: 0.02" super-hands="colliderEvent: collisions;
+                             colliderEventProperty: els;
+                             colliderEndEvent: collisions;
+                             colliderEndEventProperty: clearedEls" collision-filter="group: hands;
+                                    collidesWith: blue;
+                                    collisionForces: false">
+            </a-mixin>
+            <a-mixin id="object" dynamic-body grabbable>
+            </a-mixin>
+        </a-assets>
+        <a-entity oculus-touch-controls="hand: left" model: true mixin="controller">
+        </a-entity>
+        <a-entity oculus-touch-controls="hand: right" model: true mixin="controller">
+        </a-entity>
+        <a-camera position="0 0.5 1"></a-camera>
+        
+        <a-entity mixin="object"
+        gltf-model="#fan"  
+        scale="0.2 0.2 0.2"
+        position="0.2 3 0"
+        collision-filter="group: blue; collidesWith:default, red, hands"
+        ></a-entity>
+        <a-entity mixin="object"
+        gltf-model="#fan"  
+        scale="0.2 0.2 0.2"
+        position="0 3 0"
+        collision-filter="group: blue; collidesWith:default, red, hands"
+        ></a-entity>
+        <a-entity mixin="object"
+        gltf-model="#fan"  
+        scale="0.2 0.2 0.2"
+        position="-0.2 3 0"
+        collision-filter="group: blue; collidesWith:default, red, hands"
+        ></a-entity>
+        <a-plane material="color: gray; transparent: true; opacity: 0" width="25" height="25" rotation="-90 0 0" position="0 0 0" static-body
+            collision-filter="collidesWith: blue" physics-collider></a-plane>
+
+        
+    </a-scene>
+</body>
+
+</html>
