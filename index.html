@@ -52,6 +52,10 @@
         position="-0.2 3 0"
         collision-filter="group: blue; collidesWith:default, red, hands"
         ></a-entity>
+        <a-box dynamic-body grabbale position="0.5 2 -0.5" material="color: blue"
+                width="0.5" height="0.5" depth="0.5"
+                collision-filter="group: red; collidesWith: default, blue, hands">
+        </a-box>
         <a-plane material="color: gray; transparent: true; opacity: 0" width="25" height="25" rotation="-90 0 0" position="0 0 0" static-body
             collision-filter="collidesWith: blue" physics-collider></a-plane>
 
