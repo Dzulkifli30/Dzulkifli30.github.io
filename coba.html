@@ -22,6 +22,7 @@
             <a-asset-item id="gpu" src="./assets/gpulow/scene.gltf"></a-asset-item>
             <a-asset-item id="psu" src="./assets/psu/scene.gltf"></a-asset-item>
             <a-asset-item id="mobo" src="./assets/mobo/scene.gltf"></a-asset-item>
+            <a-asset-item id="table" src="./assets/table/scene.gltf"></a-asset-item>
             <a-mixin id="controller" physics-collider static-body="shape: sphere; sphereRadius: 0.02" super-hands="colliderEvent: collisions;
                              colliderEventProperty: els;
                              colliderEndEvent: collisions;
@@ -30,6 +31,7 @@
                                     collisionForces: false">
             </a-mixin>
             <a-mixin id="object" dynamic-body grabbable ></a-mixin>
+            <a-mixin id="kotak" static-body collision-filter="collidesWith: blue, default, red, hands" ></a-mixin>
         </a-assets>
         <a-entity oculus-touch-controls="hand: left" model: true mixin="controller">
         </a-entity>
@@ -52,9 +54,10 @@
             <a-entity mixin="object" gltf-model="#psu" scale="0.005 0.005 0.005" position="0 1 -0.5"
             collision-filter="group: blue; collidesWith:default, red, hands"></a-entity>
 
-        <a-box static-body position="0.5 0.2 -0.5" material="color: brown" width="2" height="0.5" depth="0.5"
+        <!-- <a-box static-body position="0.5 0.2 -0.5" material="color: brown" width="2" height="0.5" depth="0.5"
             collision-filter="collidesWith: blue, default, red, hands">
-        </a-box>
+        </a-box> -->
+        <a-entity mixin="kotak" gltf-model="#table" scale="0.5 0.5 1" position="0.5 0.2 -0.5" rotation="0 90 0"></a-entity>
         <a-box static-body position="2 0.2 0" material="color: blue" width="0.5" height="0.5" depth="0.5"
             rotation="0 90 0" collision-filter="collidesWith: blue, default, red, hands">
         </a-box>
