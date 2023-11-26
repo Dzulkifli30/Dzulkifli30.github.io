@@ -6,20 +6,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hand Tracking Example</title>
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="https://unpkg.com/aframe-hand-tracking-controls@0.3.1/dist/aframe-hand-tracking-controls.js"></script>
+  <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
+  <script src="https://unpkg.com/aframe-extras@6.0.0/dist/aframe-extras.min.js"></script>
 </head>
 
 <body>
-  <a-scene hand-tracking-controls>
-    <!-- Menambahkan model tangan yang sederhana dengan ID "handModel" -->
-    <a-entity id="handModel" geometry="primitive: box; width: 0.1; height: 0.1; depth: 0.1"
-      material="color: #00ff00" position="0 0 -1" rotation="0 0 0"></a-entity>
+  <a-scene>
+    <!-- Menambahkan kontrol pelacakan tangan -->
+    <a-entity id="leftHand" super-hands="colliderEvent: collisions;
+                                            colliderEventProperty: els;
+                                            colliderEndEvent: collisions;
+                                            colliderEndEventProperty: clearedEls"
+              hand-controls="left"></a-entity>
+
+    <a-entity id="rightHand" super-hands="colliderEvent: collisions;
+                                             colliderEventProperty: els;
+                                             colliderEndEvent: collisions;
+                                             colliderEndEventProperty: clearedEls"
+              hand-controls="right"></a-entity>
+
+    <!-- Menambahkan objek yang dapat dipegang -->
+    <a-entity class="grabbable" geometry="primitive: box; width: 0.2; height: 0.2; depth: 0.2"
+              material="color: #00ff00" position="0 1 -1"></a-entity>
+
+    <!-- Menambahkan lantai -->
+    <a-plane material="color: gray;" width="25" height="25" rotation="-90 0 0" position="0 0 0" static-body
+      collision-filter="collidesWith: blue" physics-collider></a-plane>
   </a-scene>
 
   <script>
-    // Mengakses elemen dengan ID "handModel" dan mengubah warnanya
-    var handModel = document.getElementById('handModel');
-    handModel.setAttribute('material', 'color', '#ff0000'); // Mengubah warna menjadi merah
+    // Menambahkan komponen grabbable ke objek
+    document.querySelectorAll('.grabbable').forEach(function (el) {
+      el.setAttribute('grabbable', '');
+    });
   </script>
 </body>
 
