@@ -4,43 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A-Frame Love Example</title>
+    <title>A-Frame Hand Tracking Example</title>
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
 </head>
 
 <body>
     <a-scene>
-        <!-- Tambahkan elemen a-box sebagai tombol -->
-        <a-box id="loveButton" color="red" position="0 0 -1" width="1" height="0.2" depth="0.1"></a-box>
+        <!-- Tambahkan elemen a-box -->
+        <a-box id="trackingBox" color="blue" position="0 1 0" width="1" height="1" depth="1" grabbable></a-box>
 
-        <!-- Tambahkan elemen a-text sebagai teks "I love you" -->
-        <a-text id="loveText" position="0 0.5 -1" align="center" value="I love you" visible="false" color="blue"></a-text>
-
-        <a-camera position="0 0.1 0"></a-camera>
-
-        <a-entity
-            cursor-listener
-            raycaster="objects: #loveButton;"
-            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03;"
-            material="color: black; shader: flat">
-        </a-entity>
+        <!-- Tambahkan elemen a-camera -->
+        <a-camera>
+            <!-- Tambahkan komponen super-hands ke a-camera -->
+            <a-entity super-hands></a-entity>
+        </a-camera>
     </a-scene>
 
     <script>
-        AFRAME.registerComponent('cursor-listener', {
+        AFRAME.registerComponent('hand-tracking', {
             init: function () {
                 var el = this.el;
 
-                // Tambahkan event listener untuk menanggapi sentuhan tombol
-                el.addEventListener('click', function () {
-                    // Dapatkan elemen teks
-                    var loveText = document.getElementById('loveText');
+                // Tambahkan event listener untuk menanggapi perubahan keadaan tangan
+                el.addEventListener('grab-start', function () {
+                    // Dapatkan elemen kotak untuk dilacak
+                    var trackingBox = document.getElementById('trackingBox');
 
-                    // Toggle visibility teks
-                    loveText.setAttribute('visible', !loveText.getAttribute('visible'));
+                    // Setel kotak menjadi terlihat saat tangan terkepal
+                    trackingBox.setAttribute('visible', true);
+                });
+
+                el.addEventListener('grab-end', function () {
+                    // Dapatkan elemen kotak untuk dilacak
+                    var trackingBox = document.getElementById('trackingBox');
+
+                    // Setel kotak menjadi tidak terlihat saat tangan terbuka
+                    trackingBox.setAttribute('visible', false);
                 });
             }
         });
+
+        // Tambahkan komponen hand-tracking ke a-camera
+        AFRAME.components['super-hands'].Component.prototype.handEntered = function (el) {
+            this.el.sceneEl.emit('grab-start', el);
+        };
+
+        AFRAME.components['super-hands'].Component.prototype.handExited = function (el) {
+            this.el.sceneEl.emit('grab-end', el);
+        };
     </script>
 </body>
 
