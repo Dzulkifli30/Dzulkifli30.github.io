@@ -6,32 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A-Frame Hand Tracking Example</title>
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands"></script>
 </head>
 
 <body>
     <a-scene>
-        <!-- Tangan kiri -->
-        <a-entity id="leftHand" super-hands="colliderEvent: hand-controls-collider-hit; colliderEventProperty: els;"
-            oculus-touch-controls="hand: left">
-            <a-entity gltf-model="./assets/left.glb" scale="0.1 0.1 0.1"></a-entity>
-        </a-entity>
-
-        <!-- Tangan kanan -->
-        <a-entity id="rightHand" super-hands="colliderEvent: hand-controls-collider-hit; colliderEventProperty: els;"
-            oculus-touch-controls="hand: right">
-            <a-entity gltf-model="./assets/right.glb" scale="0.1 0.1 0.1"></a-entity>
-        </a-entity>
-
-        <!-- Tambahkan elemen a-camera -->
         <a-camera>
-            <!-- Tambahkan komponen super-hands ke a-camera -->
-            <a-entity super-hands></a-entity>
+            <!-- Add hand tracking component -->
+            <a-entity hand-tracking-controls></a-entity>
         </a-camera>
 
-        <!-- Tambahkan elemen yang akan dipantau oleh tangan -->
-        <a-box color="green" position="0 1 -1"></a-box>
+        <!-- Add an entity to represent the tracked hand -->
+        <a-entity id="trackedHand" geometry="primitive: sphere; radius: 0.05" material="color: red;"></a-entity>
     </a-scene>
+
+    <script>
+        AFRAME.registerComponent('hand-tracking-controls', {
+            init: function () {
+                // Set up hand tracking using mediapipe
+                const hands = new Hands({ locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}` });
+                hands.setOptions({
+                    maxNumHands: 1,
+                    minDetectionConfidence: 0.5,
+                    minTrackingConfidence: 0.5,
+                });
+                hands.onResults(handleHandTracking);
+
+                // Start tracking
+                const video = document.querySelector('video');
+                navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
+                    video.srcObject = stream;
+                });
+
+                // Handle hand tracking results
+                function handleHandTracking(results) {
+                    const trackedHand = document.getElementById('trackedHand');
+                    if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
+                        // Get hand position from the first detected hand
+                        const handPosition = results.multiHandLandmarks[0][0];
+                        // Set the position of the tracked hand entity
+                        trackedHand.setAttribute('position', `${handPosition.x} ${handPosition.y} ${handPosition.z}`);
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
