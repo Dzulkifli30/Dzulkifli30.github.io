@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A-Frame Hand Tracking Example</title>
+    <title>A-Frame Grab Example</title>
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
 </head>
 
 <body>
     <a-scene>
-        <!-- Tambahkan elemen a-box -->
-        <a-box id="trackingBox" color="blue" position="0 1 0" width="1" height="1" depth="1" grabbable></a-box>
+        <!-- Tambahkan elemen a-box yang dapat di-grab -->
+        <a-box id="grabBox" color="green" position="0 1 -5" width="1" height="1" depth="1" grabbable></a-box>
 
         <!-- Tambahkan elemen a-camera -->
         <a-camera>
@@ -20,40 +20,6 @@
             <a-entity super-hands></a-entity>
         </a-camera>
     </a-scene>
-
-    <script>
-        AFRAME.registerComponent('hand-tracking', {
-            init: function () {
-                var el = this.el;
-
-                // Tambahkan event listener untuk menanggapi perubahan keadaan tangan
-                el.addEventListener('grab-start', function () {
-                    // Dapatkan elemen kotak untuk dilacak
-                    var trackingBox = document.getElementById('trackingBox');
-
-                    // Setel kotak menjadi terlihat saat tangan terkepal
-                    trackingBox.setAttribute('visible', true);
-                });
-
-                el.addEventListener('grab-end', function () {
-                    // Dapatkan elemen kotak untuk dilacak
-                    var trackingBox = document.getElementById('trackingBox');
-
-                    // Setel kotak menjadi tidak terlihat saat tangan terbuka
-                    trackingBox.setAttribute('visible', false);
-                });
-            }
-        });
-
-        // Tambahkan komponen hand-tracking ke a-camera
-        AFRAME.components['super-hands'].Component.prototype.handEntered = function (el) {
-            this.el.sceneEl.emit('grab-start', el);
-        };
-
-        AFRAME.components['super-hands'].Component.prototype.handExited = function (el) {
-            this.el.sceneEl.emit('grab-end', el);
-        };
-    </script>
 </body>
 
 </html>
