@@ -15,17 +15,15 @@
     <a-scene physics="debug: false">
         <a-assets>
             <a-asset-item id="fan" src="./assets/fan/scene.gltf"></a-asset-item>
-            <a-asset-item id="hdd" src="./assets/hdd/scene.gltf"></a-asset-item>
-            <a-asset-item id="ram" src="./assets/ram/scene.gltf"></a-asset-item>
-            <a-asset-item id="ssd" src="./assets/ssd/scene.gltf"></a-asset-item>
-            <a-mixin id="controller" physics-collider static-body="shape: sphere; sphereRadius: 0.02" super-hands="colliderEvent: collisions;
+            <a-mixin id="controller" physics-collider static-body="shape: sphere; sphereRadius: 0.02"
+                super-hands="colliderEvent: collisions;
                              colliderEventProperty: els;
                              colliderEndEvent: collisions;
                              colliderEndEventProperty: clearedEls" collision-filter="group: hands;
                                     collidesWith: blue;
                                     collisionForces: false">
             </a-mixin>
-            <a-mixin id="object" dynamic-body grabbable grab-show="#infoText"></a-mixin>
+            <a-mixin id="object" dynamic-body grabbable grab-show="#infoText" collide-hide></a-mixin>
         </a-assets>
         <a-entity oculus-touch-controls="hand: left" model: true mixin="controller">
         </a-entity>
@@ -33,18 +31,15 @@
         </a-entity>
         <a-camera position="0 0.5 1"></a-camera>
 
+        <!-- Gunakan entitas dengan mixin "object" yang mencakup objek fan -->
         <a-entity mixin="object" gltf-model="#fan" scale="0.2 0.2 0.2" position="0.2 1 -0.5"
             collision-filter="group: blue; collidesWith:default, red, hands"></a-entity>
-        <a-entity mixin="object" gltf-model="#hdd" scale="0.3 0.3 0.3" position="0.5 1 -0.5"
-            collision-filter="group: blue; collidesWith:default, red, hands"></a-entity>
-        <a-entity mixin="object" gltf-model="#ram" scale="0.05 0.05 0.05" position="-0.2 1 -0.5"
-            collision-filter="group: blue; collidesWith:default, red, hands"></a-entity>
-        <a-entity mixin="object" gltf-model="#ssd" scale="0.5 0.5 0.5" position="0 1 -0.5"
+        <a-entity mixin="object" gltf-model="#fan" scale="0.2 0.2 0.2" position="2 2 0"
             collision-filter="group: blue; collidesWith:default, red, hands"></a-entity>
 
         <a-entity id="infoText" text="value: Ini adalah RAM" position="-0.2 1 -1" visible="false"></a-entity>
-        <a-box static-body position="0.5 0.2 -0.5" material="color: brown" width="2" height="0.5" depth="0.5"
-            collision-filter="collidesWith: blue, default, red, hands">
+        <a-box static-body position="2 0.2 0" material="color: blue" width="0.5" height="0.5" depth="0.5"
+            rotation="0 90 0" id="blueBox" collision-filter="collidesWith: blue, default, red, hands">
         </a-box>
         <a-plane material="color: gray;" width="25" height="25" rotation="-90 0 0" position="0 0 0" static-body
             collision-filter="collidesWith: blue" physics-collider></a-plane>
@@ -74,6 +69,19 @@
 
                 el.addEventListener('grab-end', function () {
                     target.setAttribute('visible', false);
+                });
+            }
+        });
+
+        AFRAME.registerComponent('collide-hide', {
+            init: function () {
+                var el = this.el;
+                var blueBox = document.getElementById('blueBox');
+
+                el.addEventListener('collide', function (event) {
+                    if (event.detail.body.el === blueBox) {
+                        el.setAttribute('visible', false);
+                    }
                 });
             }
         });
