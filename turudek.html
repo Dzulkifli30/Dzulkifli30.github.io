@@ -2,32 +2,12 @@
 <html>
 <head>
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <script src="https://gftruj.github.io/hand.tracking.controls.extras/dist/aframe-hand-tracking-controls-extras.js"></script>
 </head>
 <body>
     <a-scene>
-        <a-entity id="left-hand" hand-tracking-controls="hand: left;" hand-tracking-extras>
-            <a-box position="0 0 -1" rotation="0 45 0" color="#4CC3D9"></a-box>
-        </a-entity>
-        <a-entity id="right-hand" hand-tracking-controls="hand: right;" hand-tracking-extras>
-            <a-box position="0 0 -1" rotation="0 45 0" color="#4CC3D9"></a-box>
-        </a-entity>
+        <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
+        <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
         <a-sky color="yellow"></a-sky>
     </a-scene>
-
-    <script>
-        var leftHand = document.getElementById("left-hand");
-        var rightHand = document.getElementById("right-hand");
-
-        leftHand.addEventListener("hand-tracking-extras-ready", (evt) => {
-            var jointsAPI = evt.detail.data.jointsAPI;
-            // Anda bisa menggunakan jointsAPI di sini untuk tangan kiri
-        });
-
-        rightHand.addEventListener("hand-tracking-extras-ready", (evt) => {
-            var jointsAPI = evt.detail.data.jointsAPI;
-            // Anda bisa menggunakan jointsAPI di sini untuk tangan kanan
-        });
-    </script>
 </body>
 </html>
