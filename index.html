@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tes</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
-    <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
+    <!-- <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script> -->
     <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-hand-tracking-controls/dist/aframe-hand-tracking-controls.min.js"></script>
     <script src="https://unpkg.com/aframe-physics-system/dist/aframe-physics-system.min.js"></script>
@@ -38,7 +38,6 @@
         </a-assets>
         <a-entity id="leftHand" hand-tracking-controls="hand: left;" super-hands hand-tracking-grab-controls="hand: left;" model: true mixin="controller"></a-entity>
         <a-entity id="rightHand" hand-tracking-controls="hand: right;" super-hands hand-tracking-grab-controls="hand: right;" model: true mixin="controller"></a-entity>
-        </a-entity>
         <a-entity mixin="kotak" gltf-model="#table" scale="0.5 0.5 1" position="0.5 0.2 -0.5" rotation="0 90 0"></a-entity>
         <a-camera position="0 0.5 1"></a-camera>
 
