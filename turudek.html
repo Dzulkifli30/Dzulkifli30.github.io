@@ -2,12 +2,14 @@
 <html>
 <head>
     <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.misc.min.js"></script>
+    <script src="https://gftruj.github.io/hand.tracking.controls.extras/dist/aframe-hand-tracking-controls-extras.js"></script>
 </head>
 <body>
     <a-scene>
-        <a-entity id="leftHand" hand-tracking-controls="hand: left;"></a-entity>
-        <a-entity id="rightHand" hand-tracking-controls="hand: right;"></a-entity>
-      <a-sky color="gray"></a-sky>
+        <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: left;"></a-entity>
+        <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right;"></a-entity>
+        <a-box hoverable grabbable stretchable draggable droppable color="blue" position="0 0 -1"></a-box>
     </a-scene>
 </body>
 </html>
