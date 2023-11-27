@@ -23,6 +23,8 @@
             <a-asset-item id="psu" src="./assets/psu/scene.gltf"></a-asset-item>
             <a-asset-item id="mobo" src="./assets/mobo/scene.gltf"></a-asset-item>
             <a-asset-item id="table" src="./assets/table/scene.gltf"></a-asset-item>
+            <a-asset-item id="table" src="./assets/SHOP/ShopLow.obj"></a-asset-item>
+            <a-asset-item id="table" src="./assets/SHOP/ShopLow.mtl"></a-asset-item>
             <a-mixin id="controller" physics-collider static-body="shape: sphere; sphereRadius: 0.02" super-hands="colliderEvent: collisions;
                              colliderEventProperty: els;
                              colliderEndEvent: collisions;
@@ -38,6 +40,8 @@
         <a-entity oculus-touch-controls="hand: right" model: true mixin="controller">
         </a-entity>
         <a-entity mixin="kotak" gltf-model="#table" scale="1 0.5 2" position="0.2 0.2 -0.5"
+            rotation="0 90 0"></a-entity>
+        <a-entity mixin="kotak" obj-model="" scale="1 0.5 2" position="0.2 0.2 -0.5"
             rotation="0 90 0"></a-entity>
         <a-camera position="0 0.5 1"></a-camera>
 
