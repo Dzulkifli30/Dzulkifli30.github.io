@@ -40,10 +40,10 @@
         <a-entity hand-controls="hand: right" model: true mixin="controller">
         </a-entity>
         <!-- Menambahkan movement-controls untuk karakter pemain -->
-        <a-entity id="player" movement-controls
-            collision-filter="group: player; collidesWith: blue, default, red, hands">
-            <a-camera position="0 1 1" rotation="0 0 0"></a-camera>
-        </a-entity>
+        <a-entity id="player" movement-controls="controls: gamepad; gamepadControls: true" kinematic-body
+        collision-filter="group: player; collidesWith: blue, default, red, hands">
+        <a-camera position="0 1 0" rotation="0 0 0"></a-camera>
+    </a-entity>
 
         <a-box static-body collision-filter="collidesWith: blue, default, red, hands" position="1 0.5 -0.5" material="color: gray"
                 width="5" height="0.5" depth="1">
