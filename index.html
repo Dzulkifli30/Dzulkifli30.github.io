@@ -40,15 +40,15 @@
         <a-entity hand-controls="hand: right" model: true mixin="controller">
         </a-entity>
 
-        <a-box static-body collision-filter="collidesWith: blue, default, red, hands" position="0 0.5 -0.5" material="color: red"
+        <a-box static-body collision-filter="collidesWith: blue, default, red, hands" position="0 0.5 -0.5" material="color: gray"
                 width="5" height="0.5" depth="1">
         </a-box>
-        <a-box static-body collision-filter="collidesWith: blue, default, red, hands" position="0 0.5 3" material="color: brown"
+        <a-box static-body collision-filter="collidesWith: blue, default, red, hands" position="-3 0.5 0" rotation="0 90 0" material="color: gray"
                 width="5" height="0.5" depth="1">
         </a-box>
-        <!-- <a-entity mixin="kotak" obj-model="obj: #shop-obj; mtl: #shop-mtl" scale="0.3 0.3 0.3" position="1 0.8 -0.5"
-            rotation="0 90 0"></a-entity> -->
-        <a-camera position="0 1 1"></a-camera>
+        <a-entity obj-model="obj: #shop-obj; mtl: #shop-mtl" scale="2 2 2" position="-1 3.5 2"
+            rotation="0 0 0" ></a-entity>
+        <a-camera position="0 1 1" rotation="0 0 250"></a-camera>
 
         <!-- item komputer -->
         <a-entity mixin="object" gltf-model="#fan" scale="0.4 0.4 0.4" position="-0.3 0.7 -0.3"
@@ -59,25 +59,27 @@
             collision-filter="group: blue; collidesWith:default, blue, hands" sleepy></a-entity>
         <a-entity mixin="object" gltf-model="#ssd" scale="1 1 1" position="0.6 0.7 -0.3"
             collision-filter="group: blue; collidesWith:default, blue, hands" sleepy></a-entity>
-        <a-entity mixin="object" gltf-model="#cpu" scale="0.05 0.05 0.05" position="0.9 0.7 -0.3"
+        <a-entity mixin="object" gltf-model="#cpu" scale="0.05 0.05 0.05" position="0.9 1 -0.3"
             collision-filter="group: blue; collidesWith:default, blue, hands" sleepy></a-entity>
-        <a-entity mixin="object" gltf-model="#gpu" scale="0.05 0.05 0.05" position="1.2 0.7 -0.2"
+        <a-entity mixin="object" gltf-model="#gpu" scale="0.05 0.05 0.05" position="1.35 0.9 -0.2"
             collision-filter="group: blue; collidesWith:default, blue, hands" sleepy></a-entity>
-        <a-entity mixin="object" gltf-model="#psu" scale="0.005 0.005 0.005" position="-1.2 0.7 -0.3"
+        <a-entity mixin="object" gltf-model="#psu" scale="0.005 0.005 0.005" position="-1.2 1 -0.3"
             collision-filter="group: blue; collidesWith:default, blue, hands" sleepy></a-entity>
         <a-entity mixin="object" gltf-model="#mobo" scale="0.1 0.1 0.1" position="-0.6 1 -0.2"
             collision-filter="group: blue; collidesWith:default, blue, hands" sleepy></a-entity>
         <!-- text aja -->
-        <a-text value="Fan" position="-0.3 0.9 -0.3" rotation="0 0 0" scale="0.5 0.5 0.5" color="black"></a-text>
-        <a-text value="HDD" position="0 0.9 -0.3" rotation="0 0 0" scale="0.5 0.5 0.5" color="black"></a-text>
-        <a-text value="RAM" position="0.3 0.9 -0.3" rotation="0 0 0" scale="0.5 0.5 0.5" color="black"></a-text>
-        <a-text value="SSD" position="0.6 0.9 -0.3" rotation="0 0 0" scale="0.5 0.5 0.5" color="black"></a-text>
-        <a-text value="CPU" position="0.9 0.9 -0.3" rotation="0 0 0" scale="0.5 0.5 0.5" color="black"></a-text>
-        <a-text value="GPU" position="1.2 0.9 -0.2" rotation="0 0 0" scale="0.5 0.5 0.5" color="black"></a-text>
-        <a-text value="PSU" position="-1.2 0.9 -0.3" rotation="0 0 0" scale="0.5 0.5 0.5" color="black"></a-text>
-        <a-text value="Motherboard" position="-0.8 1.1 -0.2" rotation="0 0 0" scale="0.5 0.5 0.5" color="black"></a-text>
+        <a-text value="<Fan>" position="-3 1 2.2" rotation="0 90 0" scale="0.5 0.5 0.5" color="black"></a-text>
+        <a-text value="<HDD>" position="-3 1 1.8" rotation="0 90 0" scale="0.5 0.5 0.5" color="black"></a-text>
+        <a-text value="<RAM>" position="-3 1 1.4" rotation="0 90 0" scale="0.5 0.5 0.5" color="black"></a-text>
+        <a-text value="<SSD>" position="-3 1 1" rotation="0 90 0" scale="0.5 0.5 0.5" color="black"></a-text>
+        <a-text value="<CPU>" position="-3 1 0.6" rotation="0 90 0" scale="0.5 0.5 0.5" color="black"></a-text>
+        <a-text value="<GPU>" position="-3 1 0.2" rotation="0 90 0" scale="0.5 0.5 0.5" color="black"></a-text>
+        <a-text value="<PSU>" position="-3 1 -0.2" rotation="0 90 0" scale="0.5 0.5 0.5" color="black"></a-text>
+        <a-text value="<Motherboard>" position="-3 1 -0.6" rotation="0 90 0" scale="0.5 0.5 0.5" color="black"></a-text>
         <!-- dataran tembok -->
         <a-plane material="color: gray;" width="15" height="15" rotation="-90 0 0" position="0 0 0" static-body
+            collision-filter="collidesWith: blue" physics-collider></a-plane>
+        <a-plane material="color: gray;" width="15" height="15" rotation="-90 0 0" position="0 9 0" static-body
             collision-filter="collidesWith: blue" physics-collider></a-plane>
         <a-plane material="color: gray;" width="15" height="15" rotation="0 0 0" position="0 0 -7" static-body
             collision-filter="collidesWith: blue" physics-collider></a-plane>
