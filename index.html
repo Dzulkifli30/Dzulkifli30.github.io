@@ -39,11 +39,12 @@
         </a-entity>
         <a-entity hand-controls="hand: right" model: true mixin="controller">
         </a-entity>
+
         <!-- Menambahkan movement-controls untuk karakter pemain -->
         <a-entity id="player" movement-controls="controls: gamepad; gamepadControls: true" kinematic-body
-        collision-filter="group: player; collidesWith: blue, default, red, hands">
-        <a-camera position="0 1 0" rotation="0 0 0"></a-camera>
-    </a-entity>
+            collision-filter="group: player; collidesWith: blue, default, red, hands">
+            <a-camera position="0 1 0" rotation="0 0 0"></a-camera>
+        </a-entity>
 
         <a-box static-body collision-filter="collidesWith: blue, default, red, hands" position="1 0.5 -0.5" material="color: gray"
                 width="5" height="0.5" depth="1">
@@ -141,6 +142,41 @@
                 });
             }
         });
+        AFRAME.registerComponent('gamepad-controls', {
+                schema: {
+                    enabled: { default: true }
+                },
+
+                init: function () {
+                    this.gamepad = null;
+                    this.previousAxes = [0, 0];
+                },
+
+                tick: function () {
+                    if (!this.data.enabled) return;
+
+                    // Mengecek jika gamepad terdeteksi
+                    if (!this.gamepad) {
+                        this.gamepad = this.el.components['tracked-controls'].controller;
+                        return;
+                    }
+
+                    // Mengambil input dari joystick kiri
+                    var axes = this.gamepad.axes;
+
+                    // Menghitung perbedaan input dengan input sebelumnya
+                    var deltaX = axes[0] - this.previousAxes[0];
+                    var deltaY = axes[1] - this.previousAxes[1];
+
+                    // Menggerakkan entitas berdasarkan input joystick
+                    this.el.object3D.position.x += deltaX * 0.1;
+                    this.el.object3D.position.z -= deltaY * 0.1;
+
+                    // Menyimpan input untuk perbandingan selanjutnya
+                    this.previousAxes[0] = axes[0];
+                    this.previousAxes[1] = axes[1];
+                }
+            });
     </script>
 </body>
 
