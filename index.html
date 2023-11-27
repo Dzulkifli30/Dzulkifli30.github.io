@@ -32,7 +32,7 @@
                                     collidesWith: blue;
                                     collisionForces: false">
             </a-mixin>
-            <a-mixin id="object" dynamic-body grabbable></a-mixin>
+            <a-mixin id="object" dynamic-body grabbable="strength: 2" dynamic-body="gravity: 0.5"></a-mixin>
             <a-mixin id="kotak" static-body collision-filter="collidesWith: blue, default, red, hands"></a-mixin>
         </a-assets>
         <a-entity hand-controls="hand: left" model: true mixin="controller">
