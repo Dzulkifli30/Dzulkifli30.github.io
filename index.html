@@ -39,8 +39,13 @@
         </a-entity>
         <a-entity hand-controls="hand: right" model: true mixin="controller">
         </a-entity>
+        <!-- Menambahkan movement-controls untuk karakter pemain -->
+        <a-entity id="player" movement-controls
+            collision-filter="group: player; collidesWith: blue, default, red, hands">
+            <a-camera position="0 1 1" rotation="0 0 0"></a-camera>
+        </a-entity>
 
-        <a-box static-body collision-filter="collidesWith: blue, default, red, hands" position="0 0.5 -0.5" material="color: gray"
+        <a-box static-body collision-filter="collidesWith: blue, default, red, hands" position="1 0.5 -0.5" material="color: gray"
                 width="5" height="0.5" depth="1">
         </a-box>
         <a-box static-body collision-filter="collidesWith: blue, default, red, hands" position="-3 0.5 0" rotation="0 90 0" material="color: gray"
@@ -93,6 +98,34 @@
     </a-scene>
 
     <script>
+        AFRAME.registerComponent('grabbable', {
+            init: function () {
+                var el = this.el;
+
+                el.addEventListener('grab-start', function (event) {
+                    var grabbedEntity = event.detail.target;
+                    grabbedEntity.setAttribute('dynamic-body', 'mass: 0');
+                });
+
+                el.addEventListener('grab-end', function (event) {
+                    var grabbedEntity = event.detail.target;
+                    grabbedEntity.removeAttribute('dynamic-body');
+                });
+            }
+        });
+
+        document.getElementById('toggleVRButton').addEventListener('grab-start', function () {
+            var playerCamera = document.getElementById('player');
+            var isVRMode = playerCamera.getAttribute('look-controls') ? true : false;
+
+            if (isVRMode) {
+                playerCamera.removeAttribute('look-controls');
+                console.log('VR Mode Disabled');
+            } else {
+                playerCamera.setAttribute('look-controls', '');
+                console.log('VR Mode Enabled');
+            }
+        });
     </script>
 </body>
 
