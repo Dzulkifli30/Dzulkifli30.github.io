@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-hand-tracking-controls/dist/aframe-hand-tracking-controls.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-system/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/super-hands/dist/super-hands.min.js"></script>
+  </head>
+  <body>
+    <a-scene physics="debug: true">
+      <a-entity id="leftHand" hand-tracking-controls="hand: left;" super-hands></a-entity>
+      <a-entity id="rightHand" hand-tracking-controls="hand: right;" super-hands></a-entity>
+      <a-box position="0 1.6 -2" rotation="0 45 45" color="#323AF1" static-body grabbable></a-box>
+      <!-- <a-sky color="#A23EF2"></a-sky> -->
+    </a-scene>
+  </body>
+</html>
