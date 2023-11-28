@@ -46,36 +46,44 @@
             <a-camera position="0 1 0" rotation="0 0 0"></a-camera>
         </a-entity>
 
-        <a-box static-body collision-filter="collidesWith: blue, default, red, hands" position="0.05 0.5 -0.5" material="color: gray"
-                width="3.5" height="0.5" depth="1">
+        <a-box static-body collision-filter="collidesWith: blue, default, red, hands" position="0.05 0.5 -0.5"
+            material="color: gray" width="3.5" height="0.5" depth="1">
         </a-box>
-        <a-box static-body collision-filter="collidesWith: blue, default, red, hands" position="0.44 0.8 1.6" rotation="0 180 0" material="color: gray"
-                width="2" height="0.1" depth="0.8">
+        <a-box static-body collision-filter="collidesWith: blue, default, red, hands" position="0.44 0.8 1.6"
+            rotation="0 180 0" material="color: gray" width="2" height="0.1" depth="0.8">
         </a-box>
-        <a-box static-body collision-filter="collidesWith: blue, default, red, hands" position="0.48 0.5 1.6" rotation="0 180 0" material="color: gray"
-                width="0.1" height="0.6" depth="0.8">
+        <a-box static-body collision-filter="collidesWith: blue, default, red, hands" position="0.48 0.5 1.6"
+            rotation="0 180 0" material="color: gray" width="0.1" height="0.6" depth="0.8">
         </a-box>
         <a-entity obj-model="obj: #shop-obj; mtl: #shop-mtl" scale="2 2 2" position="-1 3.5 2"
-            rotation="0 0 0" ></a-entity>
+            rotation="0 0 0"></a-entity>
         <a-camera position="0 1 1" rotation="0 0 250"></a-camera>
 
         <!-- item komputer -->
         <a-entity mixin="object" gltf-model="#fan" scale="0.4 0.4 0.4" position="-0.3 1 -0.3"
-            collision-filter="group: blue; collidesWith:default, blue, hands" respawn original-position="-0.3 1 -0.3" sleepy></a-entity>
+            collision-filter="group: blue; collidesWith:default, blue, hands" respawn original-position="-0.3 1 -0.3"
+            sleepy></a-entity>
         <a-entity mixin="object" gltf-model="#hdd" scale="0.3 0.3 0.3" position="0 1 -0.3"
-            collision-filter="group: blue; collidesWith:default, blue, hands" respawn original-position="0 1 -0.3" sleepy></a-entity>
+            collision-filter="group: blue; collidesWith:default, blue, hands" respawn original-position="0 1 -0.3"
+            sleepy></a-entity>
         <a-entity mixin="object" gltf-model="#ram" scale="0.05 0.05 0.05" position="0.3 1 -0.3"
-            collision-filter="group: blue; collidesWith:default, blue, hands" respawn original-position="0.3 1 -0.3" sleepy></a-entity>
+            collision-filter="group: blue; collidesWith:default, blue, hands" respawn original-position="0.3 1 -0.3"
+            sleepy></a-entity>
         <a-entity mixin="object" gltf-model="#ssd" scale="1 1 1" position="0.6 1 -0.3"
-            collision-filter="group: blue; collidesWith:default, blue, hands" respawn original-position="0.6 1 -0.3" sleepy></a-entity>
+            collision-filter="group: blue; collidesWith:default, blue, hands" respawn original-position="0.6 1 -0.3"
+            sleepy></a-entity>
         <a-entity mixin="object" gltf-model="#cpu" scale="0.05 0.05 0.05" position="0.9 1 -0.3"
-            collision-filter="group: blue; collidesWith:default, blue, hands" respawn original-position="0.9 1 -0.3" sleepy></a-entity>
+            collision-filter="group: blue; collidesWith:default, blue, hands" respawn original-position="0.9 1 -0.3"
+            sleepy></a-entity>
         <a-entity mixin="object" gltf-model="#gpu" scale="0.05 0.05 0.05" position="1.35 1 -0.2"
-            collision-filter="group: blue; collidesWith:default, blue, hands" respawn original-position="1.35 1 -0.2" sleepy></a-entity>
+            collision-filter="group: blue; collidesWith:default, blue, hands" respawn original-position="1.35 1 -0.2"
+            sleepy></a-entity>
         <a-entity mixin="object" gltf-model="#psu" scale="0.005 0.005 0.005" position="-1.2 1 -0.3"
-            collision-filter="group: blue; collidesWith:default, blue, hands" respawn original-position="-1.2 1 -0.3" sleepy></a-entity>
+            collision-filter="group: blue; collidesWith:default, blue, hands" respawn original-position="-1.2 1 -0.3"
+            sleepy></a-entity>
         <a-entity mixin="object" gltf-model="#mobo" scale="0.1 0.1 0.1" position="-0.6 1 -0.2"
-            collision-filter="group: blue; collidesWith:default, blue, hands" respawn original-position="-0.6 1 -0.2" sleepy></a-entity>
+            collision-filter="group: blue; collidesWith:default, blue, hands" respawn original-position="-0.6 1 -0.2"
+            sleepy></a-entity>
 
         <!-- text aja -->
         <a-text value="1. Fan" position="-1 1.7 1.6" rotation="0 180 0" scale="0.35 0.35 0.35" color="white"></a-text>
@@ -85,13 +93,16 @@
         <a-text value="5. CPU" position="-1 1.3 1.6" rotation="0 180 0" scale="0.35 0.35 0.35" color="white"></a-text>
         <a-text value="6. GPU" position="-1 1.2 1.6" rotation="0 180 0" scale="0.35 0.35 0.35" color="white"></a-text>
         <a-text value="7. PSU" position="-1 1.1 1.6" rotation="0 180 0" scale="0.35 0.35 0.35" color="white"></a-text>
-        <a-text value="8. Motherboard>" position="-1 1 1.6" rotation="0 180 0" scale="0.35 0.35 0.35" color="white"></a-text>
-        <a-text value="<Taruh komponen di bawah sini sesuai dengan" position="1.2 1.8 1.6" rotation="0 180 0" scale="0.2 0.2 0.2" color="white"></a-text>
-        <a-text value="nama dan urutannya!>" position="0.27 1.8 1.6" rotation="0 180 0" scale="0.2 0.2 0.2" color="white"></a-text>
-        
+        <a-text value="8. Motherboard" position="-1 1 1.6" rotation="0 180 0" scale="0.35 0.35 0.35"
+            color="white"></a-text>
+        <a-text value="<Taruh komponen di bawah sini sesuai dengan" position="1.2 1.8 1.6" rotation="0 180 0"
+            scale="0.2 0.2 0.2" color="white"></a-text>
+        <a-text value="nama dan urutannya!>" position="0.27 1.8 1.6" rotation="0 180 0" scale="0.2 0.2 0.2"
+            color="white"></a-text>
+
         <!-- dataran tembok -->
         <a-plane material="color: gray;" width="15" height="15" rotation="-90 0 0" position="0 0.3 0" static-body
-            collision-filter="collidesWith: blue" physics-collider></a-plane> 
+            collision-filter="collidesWith: blue" physics-collider></a-plane>
         <a-plane material="color: gray;" width="15" height="15" rotation="-90 0 0" position="0 1.5 0" static-body
             collision-filter="collidesWith: blue" physics-collider></a-plane>
         <a-plane material="color: gray;" width="15" height="15" rotation="0 0 0" position="0 0 -6.5" static-body
@@ -103,6 +114,8 @@
         <a-plane material="color: gray;" width="15" height="15" rotation="0 180 0" position="0 0 4" static-body
             collision-filter="collidesWith: blue" physics-collider></a-plane>
 
+        <!-- Image  -->
+        <a-image src="./assets/Foto/Pens.png" position="0 0.58 0.009" scale="0.3 0.3"></a-image>
     </a-scene>
 
     <script>
@@ -150,40 +163,40 @@
             }
         });
         AFRAME.registerComponent('gamepad-controls', {
-                schema: {
-                    enabled: { default: true }
-                },
+            schema: {
+                enabled: { default: true }
+            },
 
-                init: function () {
-                    this.gamepad = null;
-                    this.previousAxes = [0, 0];
-                },
+            init: function () {
+                this.gamepad = null;
+                this.previousAxes = [0, 0];
+            },
 
-                tick: function () {
-                    if (!this.data.enabled) return;
+            tick: function () {
+                if (!this.data.enabled) return;
 
-                    // Mengecek jika gamepad terdeteksi
-                    if (!this.gamepad) {
-                        this.gamepad = this.el.components['tracked-controls'].controller;
-                        return;
-                    }
-
-                    // Mengambil input dari joystick kiri
-                    var axes = this.gamepad.axes;
-
-                    // Menghitung perbedaan input dengan input sebelumnya
-                    var deltaX = axes[0] - this.previousAxes[0];
-                    var deltaY = axes[1] - this.previousAxes[1];
-
-                    // Menggerakkan entitas berdasarkan input joystick
-                    this.el.object3D.position.x += deltaX * 0.1;
-                    this.el.object3D.position.z -= deltaY * 0.1;
-
-                    // Menyimpan input untuk perbandingan selanjutnya
-                    this.previousAxes[0] = axes[0];
-                    this.previousAxes[1] = axes[1];
+                // Mengecek jika gamepad terdeteksi
+                if (!this.gamepad) {
+                    this.gamepad = this.el.components['tracked-controls'].controller;
+                    return;
                 }
-            });
+
+                // Mengambil input dari joystick kiri
+                var axes = this.gamepad.axes;
+
+                // Menghitung perbedaan input dengan input sebelumnya
+                var deltaX = axes[0] - this.previousAxes[0];
+                var deltaY = axes[1] - this.previousAxes[1];
+
+                // Menggerakkan entitas berdasarkan input joystick
+                this.el.object3D.position.x += deltaX * 0.1;
+                this.el.object3D.position.z -= deltaY * 0.1;
+
+                // Menyimpan input untuk perbandingan selanjutnya
+                this.previousAxes[0] = axes[0];
+                this.previousAxes[1] = axes[1];
+            }
+        });
     </script>
 </body>
 
